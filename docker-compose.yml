@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    container_name: mongo
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - '27017:27017'
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-docker-mongo
+    command: yarn start:dev
+    environment:
+      - PORT=${PORT}
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    volumes:
+      - ./src:/app/src
+
+volumes:
+  mongo-data:
+
+  
