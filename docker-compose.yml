@@ -7,7 +7,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
-    container_name: mongo
+    container_name: mongo-container
     volumes:
       - mongo-data:/data/db
     ports:
@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nest-docker-mongo
+    container_name: nest-docker-mongo-container
     command: yarn start:dev
     environment:
       - PORT=${PORT}
