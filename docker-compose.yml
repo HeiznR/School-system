@@ -20,7 +20,7 @@ services:
     container_name: nest-docker-mongo-container
     command: yarn start:dev
     environment:
-      - PORT=${PORT}
+      DB_URL: ${DB_URL}
     ports:
       - '3000:3000'
     depends_on:
