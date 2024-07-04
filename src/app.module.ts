@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { LessonModule } from './lesson/lesson.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Lesson } from './lesson/lesson.entity';
 
 @Module({
   imports: [
@@ -15,6 +16,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       useFactory: async (configService: ConfigService) => ({
         type: 'mongodb',
         url: configService.get('DB_URL'),
+        synchronize: true,
+        useUnifiedTopology: true,
+        entities: [Lesson],
       }),
     }),
     ConfigModule.forRoot({
