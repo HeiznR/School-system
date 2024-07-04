@@ -1,10 +1,15 @@
-import { Column, Entity, ObjectIdColumn, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ObjectIdColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Lesson {
   @ObjectIdColumn()
   _id: string;
-  @PrimaryColumn('uuid')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
   @Column()
   name: string;
