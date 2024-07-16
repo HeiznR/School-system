@@ -7,6 +7,8 @@ import { LessonModule } from './lesson/lesson.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Lesson } from './lesson/lesson.entity';
+import { StudentModule } from './student/student.module';
+import { Student } from './student/student.entity';
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import { Lesson } from './lesson/lesson.entity';
         url: configService.get('DB_URL'),
         synchronize: true,
         useUnifiedTopology: true,
-        entities: [Lesson],
+        entities: [Lesson, Student],
       }),
     }),
     ConfigModule.forRoot({
@@ -29,6 +31,7 @@ import { Lesson } from './lesson/lesson.entity';
       autoSchemaFile: true,
     }),
     LessonModule,
+    StudentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
